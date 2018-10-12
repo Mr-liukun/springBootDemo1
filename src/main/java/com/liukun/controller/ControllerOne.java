@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("/one")
+@RequestMapping("/user")
 public class ControllerOne {
 
     @Autowired
@@ -29,17 +29,15 @@ public class ControllerOne {
     /*
         根据id查询用户
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public @ResponseBody User list(@PathVariable("id") String id){
-        Integer sid  = Integer.valueOf(id);
-        System.out.println(sid);
-        User list = userService.findUserById(sid);
-        return list;
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public @ResponseBody User getUserById(@PathVariable("id") Integer id){
+        User user = userService.findUserById(id);
+        return user;
     }
     /*
         根据id删除用户
     */
-   @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+   @RequestMapping(value="/id/{id}",method = RequestMethod.DELETE)
     public @ResponseBody String deleteUserById(@PathVariable("id") Integer id,@RequestParam(value = "name",required = true) String name){
        userService.deleteUserById(id);
        return "删除了";
@@ -49,11 +47,20 @@ public class ControllerOne {
         根据id更新用户姓名
      */
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/id/{id}",method = RequestMethod.PUT)
     public @ResponseBody String update(@PathVariable("id") Integer id,@RequestParam(value = "name") String name){
 
         userService.updateUserNameById(id,name);
         return id+" "+name;
     }
-
+    
+    /*
+        根据name查找用户
+    */
+    @RequestMapping(value="/name/{name}",method=RequestMethod.GET)
+    public @ResponseBody Integer getUserByname(@PathVariable("name") String name){
+        System.out.println(name);
+        Integer id = userService.getUserByName(name);
+        return id;
+    }
 }

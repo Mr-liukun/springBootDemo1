@@ -15,4 +15,6 @@ public interface UserMapper {
 
     public void updateUserNameById(@Param("id") Integer id, @Param("name") String name);
 
+    public Integer getUserByName(@Param("name")String name);
+
 }
