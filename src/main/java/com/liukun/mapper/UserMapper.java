@@ -13,4 +13,6 @@ public interface UserMapper {
 
     public void deleteUserById(@Param("id") Integer id);
 
+    public void updateUserNameById(@Param("id") Integer id, @Param("name") String name);
+
 }

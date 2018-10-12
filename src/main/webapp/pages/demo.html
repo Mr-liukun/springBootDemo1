@@ -8,10 +8,12 @@
 <script type="text/javascript">
     function fun() {
         $.ajax({
-           type:'DELETE',
+           type:'PUT',
             url:"/one/1",
-            data:{name:'liukun'}
-
+            data:{name:'liukun'},
+            success:function(data){
+               alert(data);
+            }
         });
     }
 </script>

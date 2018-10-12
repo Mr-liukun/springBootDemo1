@@ -44,11 +44,16 @@ public class ControllerOne {
        userService.deleteUserById(id);
        return "删除了";
     }
+
+    /*
+        根据id更新用户姓名
+     */
+
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public @ResponseBody String update(@PathVariable("id") Integer id,@RequestParam(value = "name") String name){
-        System.out.println(name);
-        System.out.println("qqq");
-        return id+name+";";
+
+        userService.updateUserNameById(id,name);
+        return id+" "+name;
     }
-    //添加了一条注释
+
 }
